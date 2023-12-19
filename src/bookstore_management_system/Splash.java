@@ -30,6 +30,7 @@ public class Splash extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -105,6 +106,7 @@ public class Splash extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -114,11 +116,20 @@ public class Splash extends javax.swing.JFrame {
        Splash mySplash = new Splash();
        mySplash.setVisible(true);
        try{
+           for(int i = 0 ; i <= 100 ; i++){
+               
+               Thread.sleep(60);
+               mySplash.modulesProgressBar.setValue(i);
+               mySplash.percentageLBL.setText(Integer.toString(i)+ "%");           
+           }
+       }
+       catch(InterruptedException e){
            
        }
-       catch(Exception e){
-           
-       }
+      
+       new Login().setVisible(true);
+       mySplash.dispose();
+
        
     }
 
