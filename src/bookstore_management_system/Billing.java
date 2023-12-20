@@ -4,6 +4,15 @@
  */
 package bookstore_management_system;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author usama
@@ -15,6 +24,9 @@ public class Billing extends javax.swing.JFrame {
      */
     public Billing() {
         initComponents();
+        displayBooks();
+        bookTitleTF.setEditable(false);
+        priceTF.setEditable(false);
     }
 
     /**
@@ -27,39 +39,39 @@ public class Billing extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        closeWindowLBL = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        addToBillButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        printButton = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        resetButton = new javax.swing.JButton();
+        priceTF = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        bookTitleTF = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        billNumberTF = new javax.swing.JTextField();
+        quantityTF = new javax.swing.JTextField();
+        clientNameTF = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        booksListTBL = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        billTxt = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        logoutLBL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-cancel-32.png")); // NOI18N
+        closeWindowLBL.setForeground(new java.awt.Color(255, 255, 255));
+        closeWindowLBL.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-cancel-32.png")); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Algerian", 0, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -74,27 +86,32 @@ public class Billing extends javax.swing.JFrame {
                 .addContainerGap(363, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(359, 359, 359)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(closeWindowLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(closeWindowLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 153));
-        jButton1.setText("Add To Bill");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addToBillButton.setBackground(new java.awt.Color(204, 204, 204));
+        addToBillButton.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        addToBillButton.setForeground(new java.awt.Color(0, 0, 153));
+        addToBillButton.setText("Add To Bill");
+        addToBillButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addToBillButtonMouseClicked(evt);
+            }
+        });
+        addToBillButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addToBillButtonActionPerformed(evt);
             }
         });
 
@@ -106,13 +123,13 @@ public class Billing extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(0, 0, 153));
         jLabel8.setText("Book Title");
 
-        jButton3.setBackground(new java.awt.Color(204, 204, 204));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 153));
-        jButton3.setText("Print");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        printButton.setBackground(new java.awt.Color(204, 204, 204));
+        printButton.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        printButton.setForeground(new java.awt.Color(0, 0, 153));
+        printButton.setText("Print");
+        printButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                printButtonActionPerformed(evt);
             }
         });
 
@@ -120,20 +137,19 @@ public class Billing extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(0, 0, 153));
         jLabel9.setText("Bill Number");
 
-        jButton4.setBackground(new java.awt.Color(204, 204, 204));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 0, 153));
-        jButton4.setText("Reset");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        resetButton.setBackground(new java.awt.Color(204, 204, 204));
+        resetButton.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        resetButton.setForeground(new java.awt.Color(0, 0, 153));
+        resetButton.setText("Reset");
+        resetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                resetButtonActionPerformed(evt);
             }
         });
 
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        priceTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                priceTFActionPerformed(evt);
             }
         });
 
@@ -142,10 +158,9 @@ public class Billing extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Users");
 
-        jTextField2.setText("jTextField1");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        bookTitleTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                bookTitleTFActionPerformed(evt);
             }
         });
 
@@ -156,24 +171,21 @@ public class Billing extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
         jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-user-32.png")); // NOI18N
 
-        jTextField3.setText("jTextField1");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        billNumberTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                billNumberTFActionPerformed(evt);
             }
         });
 
-        jTextField4.setText("jTextField1");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        quantityTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                quantityTFActionPerformed(evt);
             }
         });
 
-        jTextField6.setText("jTextField1");
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        clientNameTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                clientNameTFActionPerformed(evt);
             }
         });
 
@@ -181,7 +193,7 @@ public class Billing extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(0, 0, 153));
         jLabel12.setText("Client Name");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        booksListTBL.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -189,15 +201,23 @@ public class Billing extends javax.swing.JFrame {
                 "ISBN", "Title", "Author", "Categories", "Quantity", "Price"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        booksListTBL.setRowHeight(28);
+        booksListTBL.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        booksListTBL.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        booksListTBL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                booksListTBLMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(booksListTBL);
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 153));
         jLabel10.setText("Books List");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        billTxt.setColumns(20);
+        billTxt.setRows(5);
+        jScrollPane2.setViewportView(billTxt);
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 153));
@@ -207,8 +227,8 @@ public class Billing extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(0, 0, 153));
         jLabel13.setText("Books Bill");
 
-        jLabel15.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel15.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-go-back-30.png")); // NOI18N
+        logoutLBL.setForeground(new java.awt.Color(0, 0, 153));
+        logoutLBL.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-go-back-30.png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -223,25 +243,25 @@ public class Billing extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(bookTitleTF, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel12)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clientNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, 0)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(addToBillButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(215, 215, 215)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel1)
-                                        .addComponent(jTextField4)
+                                        .addComponent(quantityTF)
                                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField1)
-                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(priceTF)
+                                        .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(billNumberTF, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(204, 204, 204)
@@ -252,14 +272,14 @@ public class Billing extends javax.swing.JFrame {
                         .addComponent(jLabel11)
                         .addGap(209, 209, 209))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(printButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(181, 181, 181))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addGap(195, 195, 195))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel15)
+                            .addComponent(logoutLBL)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41))))
         );
@@ -276,13 +296,13 @@ public class Billing extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jButton3)
+                        .addComponent(printButton)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel15))
+                                .addComponent(logoutLBL))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -293,7 +313,7 @@ public class Billing extends javax.swing.JFrame {
                                                     .addGroup(layout.createSequentialGroup()
                                                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGap(30, 30, 30))
-                                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addComponent(billNumberTF, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(33, 33, 33)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -304,24 +324,24 @@ public class Billing extends javax.swing.JFrame {
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(34, 34, 34))
-                                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(bookTitleTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, 0)
-                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(clientNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(addToBillButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(95, 95, 95)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(34, 34, 34))
-                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(quantityTF, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, 0)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(priceTF, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton4)))
+                                        .addComponent(resetButton)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -333,38 +353,82 @@ public class Billing extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addToBillButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToBillButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_addToBillButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_printButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_resetButtonActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void priceTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_priceTFActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void bookTitleTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookTitleTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_bookTitleTFActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void billNumberTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billNumberTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_billNumberTFActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void quantityTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_quantityTFActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void clientNameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientNameTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_clientNameTFActionPerformed
 
+    int stock = 0;
+    
+    private void booksListTBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booksListTBLMouseClicked
+        DefaultTableModel model = (DefaultTableModel)booksListTBL.getModel();
+        int myIndex = booksListTBL.getSelectedRow();
+        bookTitleTF.setText(model.getValueAt(myIndex, 1).toString());
+        stock = Integer.parseInt( model.getValueAt(myIndex, 4).toString());
+        priceTF.setText(model.getValueAt(myIndex, 5).toString());
+    }//GEN-LAST:event_booksListTBLMouseClicked
+
+    int i = 0; 
+    int total =0;
+    private void addToBillButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToBillButtonMouseClicked
+        if(quantityTF.getText().isEmpty() || bookTitleTF.getText().isBlank()){
+            JOptionPane.showMessageDialog(this, "Missing Information!", "Input Error", JOptionPane.INFORMATION_MESSAGE);
+        }else if(Integer.parseInt(quantityTF.getText()) > stock ){
+            JOptionPane.showMessageDialog(this, "No Enough Books in the Stock", "Input Error", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            i++;
+            total = Integer.parseInt(quantityTF.getText()) * Integer.parseInt(priceTF.getText());
+            if (i == 1){
+                 billTxt.setText(billTxt.getText() + "           =========================BOOK SHOP======================\n"+" NUM        PRODUCT      PRICE        QUANTITY     TOTAL\n"+i+"        "+bookTitleTF.getText()+"      "+priceTF.getText()+"        "+quantityTF.getText()+"     "+total+"\n");
+            }else{
+                billTxt.setText(billTxt.getText()+i+"        "+bookTitleTF.getText()+"      "+priceTF.getText()+"        "+quantityTF.getText()+"     "+total+"\n");
+            }
+        }
+    }//GEN-LAST:event_addToBillButtonMouseClicked
+
+    Connection connection = null;
+    Statement statement = null;
+    ResultSet resultSet = null;
+    private void displayBooks(){
+        try{
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            connection = DriverManager.getConnection("jdbc:derby://localhost:1527/BookStore_DB","admin1" ,"admin1");
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from admin1.BOOKSTBL");
+            booksListTBL.setModel(DbUtils.resultSetToTableModel(resultSet));
+            
+        }
+        catch(ClassNotFoundException | SQLException e){
+              System.out.print(e);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -401,17 +465,19 @@ public class Billing extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton addToBillButton;
+    private javax.swing.JTextField billNumberTF;
+    private javax.swing.JTextArea billTxt;
+    private javax.swing.JTextField bookTitleTF;
+    private javax.swing.JTable booksListTBL;
+    private javax.swing.JTextField clientNameTF;
+    private javax.swing.JLabel closeWindowLBL;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -420,12 +486,10 @@ public class Billing extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel logoutLBL;
+    private javax.swing.JTextField priceTF;
+    private javax.swing.JButton printButton;
+    private javax.swing.JTextField quantityTF;
+    private javax.swing.JButton resetButton;
     // End of variables declaration//GEN-END:variables
 }
