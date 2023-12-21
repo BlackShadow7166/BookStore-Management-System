@@ -6,10 +6,8 @@ package bookstore_management_system;
 
 import java.awt.HeadlessException;
 import java.awt.print.PrinterException;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -160,36 +158,6 @@ public class Users extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(0, 0, 153));
         jLabel11.setText("Password");
 
-        idTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idTFActionPerformed(evt);
-            }
-        });
-
-        nameTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTFActionPerformed(evt);
-            }
-        });
-
-        phoneTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phoneTFActionPerformed(evt);
-            }
-        });
-
-        addressTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addressTFActionPerformed(evt);
-            }
-        });
-
-        passwordTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTFActionPerformed(evt);
-            }
-        });
-
         saveButton.setBackground(new java.awt.Color(204, 204, 204));
         saveButton.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         saveButton.setForeground(new java.awt.Color(0, 0, 153));
@@ -197,11 +165,6 @@ public class Users extends javax.swing.JFrame {
         saveButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 saveButtonMouseClicked(evt);
-            }
-        });
-        saveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveButtonActionPerformed(evt);
             }
         });
 
@@ -214,11 +177,6 @@ public class Users extends javax.swing.JFrame {
                 editButtonMouseClicked(evt);
             }
         });
-        editButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editButtonActionPerformed(evt);
-            }
-        });
 
         deleteButton.setBackground(new java.awt.Color(204, 204, 204));
         deleteButton.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
@@ -229,11 +187,6 @@ public class Users extends javax.swing.JFrame {
                 deleteButtonMouseClicked(evt);
             }
         });
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
-            }
-        });
 
         resetButton.setBackground(new java.awt.Color(204, 204, 204));
         resetButton.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
@@ -242,11 +195,6 @@ public class Users extends javax.swing.JFrame {
         resetButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 resetButtonMouseClicked(evt);
-            }
-        });
-        resetButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resetButtonActionPerformed(evt);
             }
         });
 
@@ -282,11 +230,6 @@ public class Users extends javax.swing.JFrame {
         printButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 printButtonMouseClicked(evt);
-            }
-        });
-        printButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                printButtonActionPerformed(evt);
             }
         });
 
@@ -416,61 +359,19 @@ public class Users extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void idTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idTFActionPerformed
-
-    private void nameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameTFActionPerformed
-
-    private void phoneTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneTFActionPerformed
-
-    private void addressTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addressTFActionPerformed
-
-    private void passwordTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTFActionPerformed
-
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_saveButtonActionPerformed
-
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editButtonActionPerformed
-
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteButtonActionPerformed
-
-    private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_resetButtonActionPerformed
-
-    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_printButtonActionPerformed
-
-    Connection connection = null;
     Statement statement  = null;
     ResultSet resultSet = null;
     
     private void displayUsers(){
         try{
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            connection = DriverManager.getConnection("jdbc:derby://localhost:1527/BookStore_DB","admin1" ,"admin1");
-            statement = connection.createStatement();
+            
+            statement = ConClass.connectDB().createStatement();
             resultSet = statement.executeQuery("select * from admin1.userTBL ");
             userTBL.setModel(DbUtils.resultSetToTableModel(resultSet));
             
             
         }
-        catch(ClassNotFoundException | SQLException e){
+        catch(SQLException e){
             System.out.print(e);
         }
     }
@@ -489,11 +390,8 @@ public class Users extends javax.swing.JFrame {
         else{
            try{
                
-               Class.forName("org.apache.derby.jdbc.ClientDriver");
-               connection = DriverManager.getConnection("jdbc:derby://localhost:1527/BookStore_DB","admin1" ,"admin1");
-                
-                
-                PreparedStatement checkID = connection.prepareStatement("SELECT * FROM UserTBL WHERE UID = ?");
+    
+                PreparedStatement checkID = ConClass.connectDB().prepareStatement("SELECT * FROM UserTBL WHERE UID = ?");
                 checkID.setString(1, idTF.getText());
                 resultSet = checkID.executeQuery();
 
@@ -504,7 +402,7 @@ public class Users extends javax.swing.JFrame {
                 }
                  else{
                 
-                PreparedStatement add = connection.prepareStatement("insert into UserTBL values(?,?,?,?,?)");
+                PreparedStatement add = ConClass.connectDB().prepareStatement("insert into UserTBL values(?,?,?,?,?)");
                 add.setInt(1,Integer.parseInt( idTF.getText()));
                 add.setString(2,nameTF.getText() );
                 add.setString(3, phoneTF.getText());
@@ -520,7 +418,7 @@ public class Users extends javax.swing.JFrame {
                 }
               
             }
-           catch(HeadlessException | ClassNotFoundException | NumberFormatException | SQLException e){
+           catch(HeadlessException | NumberFormatException | SQLException e){
             
             }
         }
@@ -554,12 +452,11 @@ public class Users extends javax.swing.JFrame {
         }
         else{
             try{
-                Class.forName("org.apache.derby.jdbc.ClientDriver");
-                connection = DriverManager.getConnection("jdbc:derby://localhost:1527/BookStore_DB","admin1" ,"admin1");
+                
                 int userId = Integer.parseInt(idTF.getText());
                 String query = "DELETE FROM admin1.userTBL WHERE uid = ?";
                 
-                PreparedStatement delete = connection.prepareStatement(query);
+                PreparedStatement delete = ConClass.connectDB().prepareStatement(query);
                 delete.setInt(1, userId);
                 int rowsAffected = delete.executeUpdate();
                 
@@ -572,7 +469,7 @@ public class Users extends javax.swing.JFrame {
                     resetTextFields();
                 } 
             }
-            catch(HeadlessException | ClassNotFoundException | NumberFormatException | SQLException e){
+            catch(HeadlessException | NumberFormatException | SQLException e){
                      System.out.print(e);
             }
         }
@@ -585,8 +482,6 @@ public class Users extends javax.swing.JFrame {
         }
         else{
             try{
-                Class.forName("org.apache.derby.jdbc.ClientDriver");
-                connection = DriverManager.getConnection("jdbc:derby://localhost:1527/BookStore_DB","admin1" ,"admin1");
                 
                 String updatedId = idTF.getText();
                 String updatedName = nameTF.getText();
@@ -597,7 +492,7 @@ public class Users extends javax.swing.JFrame {
                 
                 String query = "update admin1.usertbl set uname = ?, uphone = ?,  uaddress = ?, upassword = ?  where uid = ?";
                 
-                try (PreparedStatement update = connection.prepareStatement(query)) {
+                try (PreparedStatement update = ConClass.connectDB().prepareStatement(query)) {
                     update.setString(1, updatedName);
                     update.setString(2, updatedPhoneNo);
                     update.setString(3,updatedAddress);
@@ -616,7 +511,7 @@ public class Users extends javax.swing.JFrame {
                 } 
                } 
             }
-            catch(HeadlessException | ClassNotFoundException | NumberFormatException | SQLException e){
+            catch(HeadlessException | NumberFormatException | SQLException e){
                      System.out.print(e);
             }
         }

@@ -5,10 +5,7 @@
 package bookstore_management_system;
 
 import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -77,12 +74,6 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Welcome to BookStore Software");
 
-        userNameTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userNameTFActionPerformed(evt);
-            }
-        });
-
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 153, 153));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -103,11 +94,6 @@ public class Login extends javax.swing.JFrame {
         signinButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 signinButtonMouseClicked(evt);
-            }
-        });
-        signinButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signinButtonActionPerformed(evt);
             }
         });
 
@@ -188,24 +174,18 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userNameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userNameTFActionPerformed
-
-    private void signinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signinButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_signinButtonActionPerformed
-    Connection connection = null;
-    Statement statement  = null;
     ResultSet resultSet = null;
     
     private void resetTextFields() {
         userNameTF.setText("");
         passwordTF.setText("");
     }
+    private void closeWindowLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeWindowLBLMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_closeWindowLBLMouseClicked
+
     private void signinButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signinButtonMouseClicked
-       
-        switch (userComboBox.getSelectedIndex()) {
+       switch (userComboBox.getSelectedIndex()) {
             case -1:
                 JOptionPane.showMessageDialog(this, "Kindly select your role from the combo box", "User Selection Error", JOptionPane.ERROR_MESSAGE);
                 break;
@@ -223,10 +203,8 @@ public class Login extends javax.swing.JFrame {
                 break;
             case 1:
                 try{
-                    Class.forName("org.apache.derby.jdbc.ClientDriver");
-                    connection = DriverManager.getConnection("jdbc:derby://localhost:1527/BookStore_DB","admin1" ,"admin1");
-                    
-                    PreparedStatement loginCheck = connection.prepareStatement("select * from admin1.usertbl where uname = ?  and upassword = ?");
+                                 
+                    PreparedStatement loginCheck = ConClass.connectDB().prepareStatement("select * from admin1.usertbl where uname = ?  and upassword = ?");
                     loginCheck.setString(1, userNameTF.getText());
                     loginCheck.setString(2,passwordTF.getText());
                     
@@ -243,19 +221,14 @@ public class Login extends javax.swing.JFrame {
                     resetTextFields();
                 } 
                 }
-                catch(HeadlessException | ClassNotFoundException | SQLException e){
+                catch(HeadlessException | SQLException e){
                     System.out.print(e);
                 }
                 break;
             default:
                 break;
         }
-        
     }//GEN-LAST:event_signinButtonMouseClicked
-
-    private void closeWindowLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeWindowLBLMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_closeWindowLBLMouseClicked
 
     /**
      * @param args the command line arguments

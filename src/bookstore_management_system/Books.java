@@ -6,7 +6,6 @@ package bookstore_management_system;
 
 import java.awt.HeadlessException;
 import java.awt.print.PrinterException;
-import java.sql.Connection;
 import java.sql.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -107,12 +106,6 @@ public class Books extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(0, 0, 153));
         jLabel11.setText("Price");
 
-        isbnTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                isbnTFActionPerformed(evt);
-            }
-        });
-
         logoutLBL.setForeground(new java.awt.Color(0, 0, 153));
         logoutLBL.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-go-back-30.png")); // NOI18N
         logoutLBL.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -131,12 +124,6 @@ public class Books extends javax.swing.JFrame {
             }
         });
 
-        titleTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                titleTFActionPerformed(evt);
-            }
-        });
-
         printButton.setBackground(new java.awt.Color(204, 204, 204));
         printButton.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         printButton.setForeground(new java.awt.Color(0, 0, 153));
@@ -146,20 +133,9 @@ public class Books extends javax.swing.JFrame {
                 printButtonMouseClicked(evt);
             }
         });
-        printButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                printButtonActionPerformed(evt);
-            }
-        });
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
         jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-user-32.png")); // NOI18N
-
-        authorTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                authorTFActionPerformed(evt);
-            }
-        });
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 153));
@@ -170,20 +146,8 @@ public class Books extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Books");
 
-        quantityTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quantityTFActionPerformed(evt);
-            }
-        });
-
         jLabel7.setForeground(new java.awt.Color(0, 0, 153));
         jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-books-32.png")); // NOI18N
-
-        priceTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                priceTFActionPerformed(evt);
-            }
-        });
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 153));
         jPanel2.setPreferredSize(new java.awt.Dimension(55, 2));
@@ -208,11 +172,6 @@ public class Books extends javax.swing.JFrame {
                 saveButtonMouseClicked(evt);
             }
         });
-        saveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveButtonActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
@@ -225,11 +184,6 @@ public class Books extends javax.swing.JFrame {
         editButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 editButtonMouseClicked(evt);
-            }
-        });
-        editButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editButtonActionPerformed(evt);
             }
         });
 
@@ -246,11 +200,6 @@ public class Books extends javax.swing.JFrame {
                 delButtonMouseClicked(evt);
             }
         });
-        delButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                delButtonActionPerformed(evt);
-            }
-        });
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 153));
@@ -263,11 +212,6 @@ public class Books extends javax.swing.JFrame {
         resetButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 resetButtonMouseClicked(evt);
-            }
-        });
-        resetButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resetButtonActionPerformed(evt);
             }
         });
 
@@ -426,62 +370,21 @@ public class Books extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void isbnTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isbnTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_isbnTFActionPerformed
-
-    private void titleTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_titleTFActionPerformed
-
-    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_printButtonActionPerformed
-
-    private void authorTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_authorTFActionPerformed
-
-    private void quantityTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_quantityTFActionPerformed
-
-    private void priceTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_priceTFActionPerformed
-
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_saveButtonActionPerformed
-
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editButtonActionPerformed
-
-    private void delButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_delButtonActionPerformed
-
-    private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_resetButtonActionPerformed
-
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel2MouseClicked
-    Connection connection = null;
+
     Statement statement = null;
     ResultSet resultSet = null;
     private void displayBooks(){
         try{
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            connection = DriverManager.getConnection("jdbc:derby://localhost:1527/BookStore_DB","admin1" ,"admin1");
-            statement = connection.createStatement();
+            
+            statement = ConClass.connectDB().createStatement();
             resultSet = statement.executeQuery("select * from admin1.BOOKSTBL");
             booksTBL.setModel(DbUtils.resultSetToTableModel(resultSet));
             
         }
-        catch(ClassNotFoundException | SQLException e){
+        catch(SQLException e){
               System.out.print(e);
         }
     }
@@ -503,13 +406,11 @@ public class Books extends javax.swing.JFrame {
         else{
             
             try{
-                Class.forName("org.apache.derby.jdbc.ClientDriver");
-                connection = DriverManager.getConnection("jdbc:derby://localhost:1527/BookStore_DB","admin1" ,"admin1");
                 
-                
-                PreparedStatement checkISBN = connection.prepareStatement("SELECT * FROM BooksTBL WHERE ISBN = ?");
+               
+                PreparedStatement checkISBN = ConClass.connectDB().prepareStatement("SELECT * FROM BooksTBL WHERE ISBN = ?");
                 checkISBN.setString(1, isbnTF.getText());
-                ResultSet resultSet = checkISBN.executeQuery();
+                resultSet = checkISBN.executeQuery();
 
                  if (resultSet.next()) {
                 // Book with the same ISBN already exists
@@ -518,10 +419,9 @@ public class Books extends javax.swing.JFrame {
                 }
                  else{
                 
-  
-                PreparedStatement add = connection.prepareStatement("insert into BooksTBL values(?,?,?,?,?,?)");
+                PreparedStatement add = ConClass.connectDB().prepareStatement("insert into BooksTBL values(?,?,?,?,?,?)");
                 add.setString(1,isbnTF.getText());
-                add.setString(2,titleTF.getText() );
+                add.setString(2,titleTF.getText().toLowerCase() );
                 add.setString(3, authorTF.getText());
                 add.setString(4, categoryComboBox.getSelectedItem().toString());
                 add.setInt(5, Integer.parseInt( quantityTF.getText()));
@@ -534,10 +434,9 @@ public class Books extends javax.swing.JFrame {
                 resetTextFields();
                 
                 }
-               
-                
+                               
             }
-            catch(HeadlessException | ClassNotFoundException | NumberFormatException | SQLException e){
+            catch(HeadlessException | NumberFormatException | SQLException e){
                      System.out.print(e);
             }
         }
@@ -555,12 +454,11 @@ public class Books extends javax.swing.JFrame {
         }
         else{
             try{
-                Class.forName("org.apache.derby.jdbc.ClientDriver");
-                connection = DriverManager.getConnection("jdbc:derby://localhost:1527/BookStore_DB","admin1" ,"admin1");
+                
                 String bookIsbn = isbnTF.getText();
                 String query = "DELETE FROM admin1.BOOKSTBL WHERE isbn = ?";
                 
-                PreparedStatement delete = connection.prepareStatement(query);
+                PreparedStatement delete = ConClass.connectDB().prepareStatement(query);
                 delete.setString(1, bookIsbn);
                 int rowsAffected = delete.executeUpdate();
                 
@@ -573,7 +471,7 @@ public class Books extends javax.swing.JFrame {
                     resetTextFields();
                 } 
             }
-            catch(HeadlessException | ClassNotFoundException | NumberFormatException | SQLException e){
+            catch(HeadlessException | NumberFormatException | SQLException e){
                      System.out.print(e);
             }
         }
@@ -600,8 +498,6 @@ public class Books extends javax.swing.JFrame {
         }
         else{
             try{
-                Class.forName("org.apache.derby.jdbc.ClientDriver");
-                connection = DriverManager.getConnection("jdbc:derby://localhost:1527/BookStore_DB","admin1" ,"admin1");
                 
                 String updatedIsbn = isbnTF.getText();
                 String updatedTitle = titleTF.getText();
@@ -613,7 +509,7 @@ public class Books extends javax.swing.JFrame {
                 
                 String query = "update admin1.BOOKSTBL set btitle = ?, bauthor = ?, bcategory = ?, bquantity = ?, bprice = ?  where isbn = ?";
                 
-                try (PreparedStatement update = connection.prepareStatement(query)) {
+                try (PreparedStatement update = ConClass.connectDB().prepareStatement(query)) {
                     update.setString(1, updatedTitle);
                     update.setString(2, updatedAuthor);
                     update.setString(3, updatedCategory);
@@ -633,7 +529,7 @@ public class Books extends javax.swing.JFrame {
                 } 
                } 
             }
-            catch(HeadlessException | ClassNotFoundException | NumberFormatException | SQLException e){
+            catch(HeadlessException | NumberFormatException | SQLException e){
                      System.out.print(e);
             }
         }
