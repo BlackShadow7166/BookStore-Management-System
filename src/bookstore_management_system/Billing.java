@@ -4,6 +4,7 @@
  */
 package bookstore_management_system;
 
+import java.awt.print.PrinterException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,6 +29,17 @@ public class Billing extends javax.swing.JFrame {
        // bookTitleTF.setEditable(false);
         priceTF.setEditable(false);
         billNumberTF.setEditable(false);
+        billNumberTF.setText(String.valueOf(1));
+        setBillNumber();
+    }
+    public Billing(String name){
+        initComponents();
+        displayBooks();
+        userNameLBL.setText(name);
+        priceTF.setEditable(false);
+        billNumberTF.setEditable(false);
+        setBillNumber();
+        
     }
 
     /**
@@ -48,7 +60,7 @@ public class Billing extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         resetButton = new javax.swing.JButton();
         priceTF = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        userNameLBL = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         billNumberTF = new javax.swing.JTextField();
@@ -147,10 +159,10 @@ public class Billing extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Users");
+        userNameLBL.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        userNameLBL.setForeground(new java.awt.Color(0, 0, 153));
+        userNameLBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        userNameLBL.setText("Users");
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 153));
@@ -280,7 +292,7 @@ public class Billing extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(userNameLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(printButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -307,7 +319,7 @@ public class Billing extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel4)
+                                            .addComponent(userNameLBL)
                                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
@@ -378,10 +390,46 @@ public class Billing extends javax.swing.JFrame {
         bookTitleTF.setEditable(false);
         isbnTF.setEditable(false);
     }//GEN-LAST:event_booksListTBLMouseClicked
+    private void setBillNumber(){
+           
+       try {
+            String query = "SELECT COUNT(*) AS total FROM BILLTBL";
+            PreparedStatement checkCount = ConClass.connectDB().prepareStatement(query);
+            ResultSet count = checkCount.executeQuery();
+            count.next();
+           int total1 =  count.getInt("total");
+           System.out.print(total1);
 
+            if (total1 > 0) 
+            {
+//                String maxQuery = "SELECT MAX(BNUM) AS max_primary_key FROM BILLTBL";
+//                PreparedStatement maxStatement = ConClass.connectDB().prepareStatement(maxQuery);
+//                ResultSet rs = maxStatement.executeQuery();
+//                          
+//                System.out.print(rs);
+//                
+//                int maxBillNumber = rs.getInt("max_primary_key") + 1;
+//                System.out.print(maxBillNumber);
+//
+//                billNumberTF.setText(String.valueOf(maxBillNumber));
+                  billNumberTF.setText(String.valueOf(total1+1));
+
+                  
+                
+                } else{
+                       
+                billNumberTF.setText(String.valueOf(1));
+                    }
+        } catch (SQLException e) {
+        }
+
+                             
+    }
     
     private void addToBillButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToBillButtonMouseClicked
        
+        
+        
         if(priceTF.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Kindly Select the book Row from the table First", "Input Error", JOptionPane.INFORMATION_MESSAGE);
        }else if(quantityTF.getText().isEmpty() || clientNameTF.getText().isEmpty() ){
@@ -398,6 +446,8 @@ public class Billing extends javax.swing.JFrame {
            DefaultTableModel model = (DefaultTableModel)billTBL.getModel();
            model.addRow(rowData);
            resetTF();
+           bookTitleTF.setEditable(true);
+           isbnTF.setEditable(true);
            sum += total;
            totalText.setText("Total = " + sum);
            
@@ -512,8 +562,60 @@ public class Billing extends javax.swing.JFrame {
     private void printButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printButtonMouseClicked
         
         DefaultTableModel model = (DefaultTableModel)billTBL.getModel();
+        
         if(model.getRowCount() == 0){
             JOptionPane.showMessageDialog(this, "Kindly Add Some Books in the Bill Firstly, then try to Print Bill ", "Input Error", JOptionPane.INFORMATION_MESSAGE);
+        }else{         
+            for(int i=0; i <= model.getRowCount()-1; i++){
+               String query = "update admin1.BOOKSTBL set bquantity = bquantity - ? where btitle = ?";
+               
+               String bookTitle = model.getValueAt(i,1).toString();
+               String quantity = model.getValueAt(i, 3).toString();
+              
+               
+               try{
+                  PreparedStatement updateStock = ConClass.connectDB().prepareStatement(query);
+                  //int books = Integer.parseInt(quantity);
+                  updateStock.setString(1, quantity);
+                  updateStock.setString(2, bookTitle);
+                  updateStock.executeUpdate();
+               }
+               catch(SQLException e){
+                   
+               } 
+            }
+            
+            Object[] totalRow = {"","","","",sum};
+            model.addRow(totalRow);
+
+            
+            try{
+                PreparedStatement add = ConClass.connectDB().prepareStatement("insert into BILLTBL values(?,?,?,?)");
+                add.setInt(1, Integer.parseInt(billNumberTF.getText()));
+                add.setString(2, userNameLBL.getText());
+                add.setString(3, clientNameTF.getText());
+                add.setInt(4, sum);
+                add.execute();
+                
+            }
+            catch(NumberFormatException | SQLException e){
+                
+            }
+             
+            try{
+                billTBL.print();
+            }
+            catch(PrinterException e){
+                System.out.print(e);
+            }
+              
+             model.setRowCount(0);
+            billTBL.repaint();
+            resetTF();
+            clientNameTF.setText("");
+            displayBooks();
+            setBillNumber();
+             
         }
 
     }//GEN-LAST:event_printButtonMouseClicked
@@ -582,7 +684,6 @@ public class Billing extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -595,5 +696,6 @@ public class Billing extends javax.swing.JFrame {
     private javax.swing.JButton resetButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JLabel totalText;
+    private javax.swing.JLabel userNameLBL;
     // End of variables declaration//GEN-END:variables
 }

@@ -211,9 +211,9 @@ public class Login extends javax.swing.JFrame {
                     resultSet = loginCheck.executeQuery();
                 
                 if (resultSet.next()) {
-                    resetTextFields();
                     JOptionPane.showMessageDialog(this, "Login Successfully", "Deletion", JOptionPane.INFORMATION_MESSAGE);                    
-                    new Billing().setVisible(true);
+                    new Billing(userNameTF.getText()).setVisible(true);
+                    resetTextFields();
                     this.dispose();
                     
                 } else {
