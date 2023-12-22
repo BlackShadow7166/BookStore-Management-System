@@ -27,6 +27,7 @@ public class Billing extends javax.swing.JFrame {
         displayBooks();
        // bookTitleTF.setEditable(false);
         priceTF.setEditable(false);
+        billNumberTF.setEditable(false);
     }
 
     /**
@@ -57,7 +58,7 @@ public class Billing extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         booksListTBL = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        totalText = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         logoutLBL = new javax.swing.JLabel();
         isbnTF = new javax.swing.JTextField();
@@ -66,7 +67,7 @@ public class Billing extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         searchButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        billTBL = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -126,6 +127,11 @@ public class Billing extends javax.swing.JFrame {
         printButton.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         printButton.setForeground(new java.awt.Color(0, 0, 153));
         printButton.setText("Print");
+        printButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                printButtonMouseClicked(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 153));
@@ -134,7 +140,12 @@ public class Billing extends javax.swing.JFrame {
         resetButton.setBackground(new java.awt.Color(204, 204, 204));
         resetButton.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         resetButton.setForeground(new java.awt.Color(0, 0, 153));
-        resetButton.setText("Reset");
+        resetButton.setText("Reset Bill");
+        resetButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                resetButtonMouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 153));
@@ -174,9 +185,9 @@ public class Billing extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(0, 0, 153));
         jLabel10.setText("Books List");
 
-        jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel11.setText("Total");
+        totalText.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        totalText.setForeground(new java.awt.Color(0, 0, 153));
+        totalText.setText("Total");
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 153));
@@ -208,7 +219,7 @@ public class Billing extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        billTBL.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -216,7 +227,7 @@ public class Billing extends javax.swing.JFrame {
                 "Num", "Product", "Price", "quantity", "Total"
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(billTBL);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -273,15 +284,15 @@ public class Billing extends javax.swing.JFrame {
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(printButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(106, 106, 106)
-                                    .addComponent(logoutLBL))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel11)
-                                    .addGap(171, 171, 171))))
+                                    .addGap(147, 147, 147)
+                                    .addComponent(logoutLBL))))
                         .addGap(29, 29, 29))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel13)
-                        .addGap(204, 204, 204))))
+                        .addGap(204, 204, 204))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(totalText)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,9 +349,9 @@ public class Billing extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(totalText, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(logoutLBL)
                             .addComponent(printButton))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -351,14 +362,16 @@ public class Billing extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     int stock = 0;
-    int i = 0; 
+    int num = 0; 
     int total =0;
+    int sum =0;
     Statement statement = null;
     ResultSet resultSet = null;
     
     private void booksListTBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booksListTBLMouseClicked
         DefaultTableModel model = (DefaultTableModel)booksListTBL.getModel();
         int myIndex = booksListTBL.getSelectedRow();
+        isbnTF.setText(model.getValueAt(myIndex, 0).toString());
         bookTitleTF.setText(model.getValueAt(myIndex, 1).toString());
         stock = Integer.parseInt( model.getValueAt(myIndex, 4).toString());
         priceTF.setText(model.getValueAt(myIndex, 5).toString());
@@ -369,6 +382,26 @@ public class Billing extends javax.swing.JFrame {
     
     private void addToBillButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToBillButtonMouseClicked
        
+        if(priceTF.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Kindly Select the book Row from the table First", "Input Error", JOptionPane.INFORMATION_MESSAGE);
+       }else if(quantityTF.getText().isEmpty() || clientNameTF.getText().isEmpty() ){
+            JOptionPane.showMessageDialog(this, "Kindly Enter the quantity of books or Client Name First", "Input Error", JOptionPane.INFORMATION_MESSAGE);
+       }else if(Integer.parseInt(quantityTF.getText()) > stock){
+            JOptionPane.showMessageDialog(this, "Book Out of Stock, Kindly Enter less number number of books", "Input Error", JOptionPane.INFORMATION_MESSAGE);
+            quantityTF.setText("");
+       }else{
+           total = Integer.parseInt(quantityTF.getText()) * Integer.parseInt(priceTF.getText());
+           num++;
+           
+           Object[] rowData = {num,bookTitleTF.getText(),priceTF.getText(),quantityTF.getText(),total};
+           
+           DefaultTableModel model = (DefaultTableModel)billTBL.getModel();
+           model.addRow(rowData);
+           resetTF();
+           sum += total;
+           totalText.setText("Total = " + sum);
+           
+       }
     }//GEN-LAST:event_addToBillButtonMouseClicked
 
     private void closeWindowLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeWindowLBLMouseClicked
@@ -387,7 +420,7 @@ public class Billing extends javax.swing.JFrame {
     
     private void searchButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchButtonMouseClicked
         if (isbnTF.getText().isEmpty() && bookTitleTF.getText().isEmpty()){
-             JOptionPane.showMessageDialog(this, "Kindly enter ISBN or Title of Book to search", "Input Error", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Kindly enter ISBN or Title of Book to search", "Input Error", JOptionPane.INFORMATION_MESSAGE);
         }else if(bookTitleTF.getText().isEmpty() && !isbnTF.getText().isEmpty()){
             try{
             PreparedStatement checkISBN = ConClass.connectDB().prepareStatement("SELECT * FROM BooksTBL WHERE ISBN = ?",
@@ -457,6 +490,34 @@ public class Billing extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_searchButtonMouseClicked
 
+    private void resetTF(){
+        isbnTF.setText("");
+        bookTitleTF.setText("");
+        quantityTF.setText("");
+        priceTF.setText("");
+        
+        
+        displayBooks();
+    }
+    
+    private void resetButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resetButtonMouseClicked
+        DefaultTableModel model = (DefaultTableModel)billTBL.getModel();
+        model.setRowCount(0);
+        billTBL.repaint();
+        num = 0;
+    }//GEN-LAST:event_resetButtonMouseClicked
+
+    
+    
+    private void printButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printButtonMouseClicked
+        
+        DefaultTableModel model = (DefaultTableModel)billTBL.getModel();
+        if(model.getRowCount() == 0){
+            JOptionPane.showMessageDialog(this, "Kindly Add Some Books in the Bill Firstly, then try to Print Bill ", "Input Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    }//GEN-LAST:event_printButtonMouseClicked
+
     private void displayBooks(){
         try{
             statement = ConClass.connectDB().createStatement();
@@ -499,6 +560,7 @@ public class Billing extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Billing().setVisible(true);
+                
             }
         });
     }
@@ -506,6 +568,7 @@ public class Billing extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToBillButton;
     private javax.swing.JTextField billNumberTF;
+    private javax.swing.JTable billTBL;
     private javax.swing.JTextField bookTitleTF;
     private javax.swing.JTable booksListTBL;
     private javax.swing.JTextField clientNameTF;
@@ -513,7 +576,6 @@ public class Billing extends javax.swing.JFrame {
     private javax.swing.JTextField isbnTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -526,12 +588,12 @@ public class Billing extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logoutLBL;
     private javax.swing.JTextField priceTF;
     private javax.swing.JButton printButton;
     private javax.swing.JTextField quantityTF;
     private javax.swing.JButton resetButton;
     private javax.swing.JButton searchButton;
+    private javax.swing.JLabel totalText;
     // End of variables declaration//GEN-END:variables
 }
