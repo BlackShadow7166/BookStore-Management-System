@@ -555,6 +555,8 @@ public class Billing extends javax.swing.JFrame {
         model.setRowCount(0);
         billTBL.repaint();
         num = 0;
+        sum =0;
+        totalText.setText("");
     }//GEN-LAST:event_resetButtonMouseClicked
 
     
@@ -615,6 +617,8 @@ public class Billing extends javax.swing.JFrame {
             clientNameTF.setText("");
             displayBooks();
             setBillNumber();
+            sum =0;
+            totalText.setText("");
              
         }
 
