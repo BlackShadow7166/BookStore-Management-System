@@ -70,7 +70,7 @@ public class Users extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
-        closeWindowLBL.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-cancel-32.png")); // NOI18N
+        closeWindowLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bookstore_management_system/icons8-cancel-32.png"))); // NOI18N
         closeWindowLBL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 closeWindowLBLMouseClicked(evt);
@@ -110,7 +110,7 @@ public class Users extends javax.swing.JFrame {
         usersLBL.setText("Users");
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-user-32.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bookstore_management_system/icons8-user-32.png"))); // NOI18N
 
         booksLBL.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         booksLBL.setForeground(new java.awt.Color(0, 0, 153));
@@ -123,7 +123,7 @@ public class Users extends javax.swing.JFrame {
         });
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-books-32.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bookstore_management_system/icons8-books-32.png"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 153));
 
@@ -216,7 +216,7 @@ public class Users extends javax.swing.JFrame {
         jScrollPane1.setViewportView(userTBL);
 
         logoutLBL.setForeground(new java.awt.Color(0, 0, 153));
-        logoutLBL.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-go-back-30.png")); // NOI18N
+        logoutLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bookstore_management_system/icons8-go-back-30.png"))); // NOI18N
         logoutLBL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoutLBLMouseClicked(evt);
@@ -389,13 +389,12 @@ public class Users extends javax.swing.JFrame {
         }  
         else{
            try{
-               
-    
+                   
                 PreparedStatement checkID = ConClass.connectDB().prepareStatement("SELECT * FROM UserTBL WHERE UID = ?");
                 checkID.setString(1, idTF.getText());
                 resultSet = checkID.executeQuery();
 
-                 if (resultSet.next()) {
+                if (resultSet.next()) {
                 // Book with the same ISBN already exists
                  JOptionPane.showMessageDialog(this, "A User with same ID is already present. Click 'Edit' to edit the existing USer.", "Duplicate ID", JOptionPane.DEFAULT_OPTION);
                       
@@ -502,11 +501,11 @@ public class Users extends javax.swing.JFrame {
                      int rowsAffected = update.executeUpdate(); 
                      
                       if (rowsAffected > 0) {
-                        JOptionPane.showMessageDialog(this, "Book Updated Successfully", "Deletion", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "User Updated Successfully", "Updation", JOptionPane.INFORMATION_MESSAGE);
                         displayUsers();
                         resetTextFields();
                     } else {
-                        JOptionPane.showMessageDialog(this, "Book with ISBN " + updatedId + " not found", "Deletion", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "User with this ID " + updatedId + " not found", "Updation", JOptionPane.WARNING_MESSAGE);
                         resetTextFields();
                 } 
                } 

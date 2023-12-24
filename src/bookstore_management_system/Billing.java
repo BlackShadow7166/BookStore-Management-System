@@ -87,7 +87,7 @@ public class Billing extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
         closeWindowLBL.setForeground(new java.awt.Color(255, 255, 255));
-        closeWindowLBL.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-cancel-32.png")); // NOI18N
+        closeWindowLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bookstore_management_system/icons8-cancel-32.png"))); // NOI18N
         closeWindowLBL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 closeWindowLBLMouseClicked(evt);
@@ -169,7 +169,7 @@ public class Billing extends javax.swing.JFrame {
         jLabel14.setText("Quantity");
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-user-32.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bookstore_management_system/icons8-user-32.png"))); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 153));
@@ -206,7 +206,7 @@ public class Billing extends javax.swing.JFrame {
         jLabel13.setText("Books Bill");
 
         logoutLBL.setForeground(new java.awt.Color(0, 0, 153));
-        logoutLBL.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-go-back-30.png")); // NOI18N
+        logoutLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bookstore_management_system/icons8-go-back-30.png"))); // NOI18N
         logoutLBL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoutLBLMouseClicked(evt);

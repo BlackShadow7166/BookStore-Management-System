@@ -87,6 +87,10 @@
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="categoryComboBox" min="-2" pref="158" max="-2" attributes="0"/>
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
@@ -102,11 +106,6 @@
                           <Component id="priceTF" min="-2" pref="90" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -219,7 +218,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\usama\Downloads\icons8-cancel-32.png"/>
+              <Image iconType="3" name="/bookstore_management_system/icons8-cancel-32.png"/>
             </Property>
           </Properties>
           <Events>
@@ -259,7 +258,7 @@
           <Color blue="99" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\usama\Downloads\icons8-go-back-30.png"/>
+          <Image iconType="3" name="/bookstore_management_system/icons8-go-back-30.png"/>
         </Property>
       </Properties>
       <Events>
@@ -306,7 +305,7 @@
           <Color blue="99" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\usama\Downloads\icons8-user-32.png"/>
+          <Image iconType="3" name="/bookstore_management_system/icons8-user-32.png"/>
         </Property>
       </Properties>
     </Component>
@@ -343,7 +342,7 @@
           <Color blue="99" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\usama\Downloads\icons8-books-32.png"/>
+          <Image iconType="3" name="/bookstore_management_system/icons8-books-32.png"/>
         </Property>
       </Properties>
     </Component>

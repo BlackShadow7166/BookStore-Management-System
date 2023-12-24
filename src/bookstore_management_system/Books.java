@@ -68,7 +68,7 @@ public class Books extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-cancel-32.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bookstore_management_system/icons8-cancel-32.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
@@ -107,7 +107,7 @@ public class Books extends javax.swing.JFrame {
         jLabel11.setText("Price");
 
         logoutLBL.setForeground(new java.awt.Color(0, 0, 153));
-        logoutLBL.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-go-back-30.png")); // NOI18N
+        logoutLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bookstore_management_system/icons8-go-back-30.png"))); // NOI18N
         logoutLBL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoutLBLMouseClicked(evt);
@@ -135,7 +135,7 @@ public class Books extends javax.swing.JFrame {
         });
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-user-32.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bookstore_management_system/icons8-user-32.png"))); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 153));
@@ -147,7 +147,7 @@ public class Books extends javax.swing.JFrame {
         jLabel6.setText("Books");
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\usama\\Downloads\\icons8-books-32.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bookstore_management_system/icons8-books-32.png"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 153));
         jPanel2.setPreferredSize(new java.awt.Dimension(55, 2));
@@ -297,6 +297,9 @@ public class Books extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10))
@@ -308,11 +311,7 @@ public class Books extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
                             .addComponent(priceTF, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(107, 107, 107))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel13)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(107, 107, 107))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,12 +396,26 @@ public class Books extends javax.swing.JFrame {
         priceTF.setText("");
         
     }
+    private boolean isInteger(String value) {
+    try {
+        Integer.parseInt(value);
+        return true;
+    } catch (NumberFormatException e) {
+        return false;
+    }
+}
     private void saveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseClicked
         if (isbnTF.getText().isEmpty() || titleTF.getText().isEmpty() || authorTF.getText().isEmpty() || categoryComboBox.getSelectedIndex() == -1 || quantityTF.getText().isEmpty() || priceTF.getText().isEmpty()) {
             
            JOptionPane.showMessageDialog(this, "Kindly enter the values in all fields!", "Input Error", JOptionPane.INFORMATION_MESSAGE);
 
+        }else if (!isInteger(quantityTF.getText()) || !isInteger(priceTF.getText())) {
+        JOptionPane.showMessageDialog(this, "Quantity and price should be valid integers.", "Input Error", JOptionPane.INFORMATION_MESSAGE);
         }
+        else if(Integer.parseInt(quantityTF.getText()) <= 0 || Integer.parseInt(priceTF.getText()) <= 0 ){
+            JOptionPane.showMessageDialog(this, "Kindly enter correct values", "Input Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
         else{
             
             try{
@@ -494,7 +507,11 @@ public class Books extends javax.swing.JFrame {
        if (isbnTF.getText().isEmpty() || titleTF.getText().isEmpty() || authorTF.getText().isEmpty() || categoryComboBox.getSelectedIndex() == -1 || quantityTF.getText().isEmpty() || priceTF.getText().isEmpty()) {
             
            JOptionPane.showMessageDialog(this, "Missing Information!", "Input Error", JOptionPane.INFORMATION_MESSAGE);
-
+        }else if (!isInteger(quantityTF.getText()) || !isInteger(priceTF.getText())) {
+        JOptionPane.showMessageDialog(this, "Quantity and price should be valid integers.", "Input Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if(Integer.parseInt(quantityTF.getText()) <= 0 || Integer.parseInt(priceTF.getText()) <= 0 ){
+            JOptionPane.showMessageDialog(this, "Kindly enter correct values", "Input Error", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             try{
