@@ -60,6 +60,8 @@ public class Books extends javax.swing.JFrame {
         booksTBL = new javax.swing.JTable();
         categoryComboBox = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
+        saleLBL = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -244,6 +246,19 @@ public class Books extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(0, 0, 153));
         jLabel14.setText("Quantity");
 
+        saleLBL.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        saleLBL.setForeground(new java.awt.Color(0, 0, 153));
+        saleLBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        saleLBL.setText("Sale");
+        saleLBL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saleLBLMouseClicked(evt);
+            }
+        });
+
+        jLabel15.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bookstore_management_system/icons8-shopping-cart-promotion-32.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -274,7 +289,11 @@ public class Books extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addGap(0, 0, 0)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(215, 215, 215)
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel15)
+                        .addGap(0, 0, 0)
+                        .addComponent(saleLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,13 +337,17 @@ public class Books extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel7))
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(saleLBL)
+                        .addGap(2, 2, 2))
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -571,6 +594,11 @@ public class Books extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
 
+    private void saleLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saleLBLMouseClicked
+        new Sale().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_saleLBLMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -618,6 +646,7 @@ public class Books extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -634,6 +663,7 @@ public class Books extends javax.swing.JFrame {
     private javax.swing.JButton printButton;
     private javax.swing.JTextField quantityTF;
     private javax.swing.JButton resetButton;
+    private javax.swing.JLabel saleLBL;
     private javax.swing.JButton saveButton;
     private javax.swing.JTextField titleTF;
     // End of variables declaration//GEN-END:variables

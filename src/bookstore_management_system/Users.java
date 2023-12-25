@@ -64,6 +64,8 @@ public class Users extends javax.swing.JFrame {
         logoutLBL = new javax.swing.JLabel();
         printButton = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
+        saleLBL = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -237,6 +239,19 @@ public class Users extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(0, 0, 153));
         jLabel13.setText("Users List");
 
+        saleLBL.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        saleLBL.setForeground(new java.awt.Color(0, 0, 153));
+        saleLBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        saleLBL.setText("Sale");
+        saleLBL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saleLBLMouseClicked(evt);
+            }
+        });
+
+        jLabel15.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bookstore_management_system/icons8-shopping-cart-promotion-32.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -262,6 +277,10 @@ public class Users extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(usersLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(117, 117, 117)
+                        .addComponent(jLabel15)
+                        .addGap(0, 0, 0)
+                        .addComponent(saleLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel7)
                         .addGap(0, 0, 0)
@@ -317,7 +336,11 @@ public class Users extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
                             .addComponent(usersLBL)
-                            .addComponent(booksLBL)))
+                            .addComponent(booksLBL)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(saleLBL)
+                                .addGap(2, 2, 2))
+                            .addComponent(jLabel15)))
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -536,6 +559,11 @@ public class Users extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_booksLBLMouseClicked
 
+    private void saleLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saleLBLMouseClicked
+        new Sale().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_saleLBLMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -582,6 +610,7 @@ public class Users extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
@@ -596,6 +625,7 @@ public class Users extends javax.swing.JFrame {
     private javax.swing.JTextField phoneTF;
     private javax.swing.JButton printButton;
     private javax.swing.JButton resetButton;
+    private javax.swing.JLabel saleLBL;
     private javax.swing.JButton saveButton;
     private javax.swing.JTable userTBL;
     private javax.swing.JLabel usersLBL;
