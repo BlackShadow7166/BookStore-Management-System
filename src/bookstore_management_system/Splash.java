@@ -135,7 +135,7 @@ public class Splash extends javax.swing.JFrame {
        try{
            for(int i = 0 ; i <= 100 ; i++){
                
-               Thread.sleep(60);
+               Thread.sleep(30);
                mySplash.modulesProgressBar.setValue(i);
                mySplash.percentageLBL.setText(Integer.toString(i)+ "%");           
            }

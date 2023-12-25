@@ -240,7 +240,7 @@ public class Books extends javax.swing.JFrame {
         jScrollPane1.setViewportView(booksTBL);
 
         categoryComboBox.setForeground(new java.awt.Color(0, 0, 153));
-        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Programming", "Chemistry", "Physics", "Biology", "Geography", "AutoBiography", "Novels", "Comics", "Urdu", "Istlamiat" }));
+        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Programming", "Chemistry", "Physics", "Biology", "Geography", "AutoBiography", "Novels", "Comics", "Urdu", "Islamic", "English", "Others" }));
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 153));
