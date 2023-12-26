@@ -4,7 +4,7 @@ BookStore Management System
 
 Features:
                   
-          Can add, update, and delete books and user accounts. Can view the bill table and print reports for total books, users, and bills.
+          Admin : Can add, update, and delete books and user accounts. Can view the bill table and print reports for total books, users, and bills.
           Seller: Can search for books by ISBN or title, add them to the bill table, and print the bill.
 
 Database:
