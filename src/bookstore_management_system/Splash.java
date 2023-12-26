@@ -16,7 +16,8 @@ public class Splash extends javax.swing.JFrame {
     public Splash() {
         initComponents();
     }
-
+     
+    
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

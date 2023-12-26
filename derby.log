@@ -1,0 +1,14 @@
+Tue Dec 26 17:10:10 PKT 2023 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Tue Dec 26 17:10:28 PKT 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-018c-a608-4936-ffffc7854841 
+on database directory U:\JAVA\BookStore_Management_System\BookStore_DB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
+Loaded from file:/C:/Program%20Files/Java/jdk-17/db-derby-10.14.2.0-bin/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=17.0.9+11-LTS-201
+user.dir=C:\Program Files\Java\jdk-17\db-derby-10.14.2.0-bin
+os.name=Windows 11
+os.arch=amd64
+os.version=10.0
+derby.system.home=U:\JAVA\BookStore_Management_System
+Database Class Loader started - derby.database.classpath=''
